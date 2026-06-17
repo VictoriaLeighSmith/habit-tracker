@@ -49,6 +49,7 @@ app.get("/habits/:id", (request, response) => {
 });
 
 // ---------- POST /habits ----------
+// Create a new habit
 app.post("/habits", (request, response) => {
   const { name, description, targetPerWeek } = request.body;
 
@@ -74,6 +75,7 @@ app.post("/habits", (request, response) => {
 });
 
 // ---------- PUT /habits/:id ----------
+// Replace habit with provided ID using data provided in the request body
 app.put("/habits/:id", (request, response) => {
   const habitId = parseInt(request.params.id);
   const { name, description, targetPerWeek } = request.body;
@@ -108,6 +110,7 @@ app.put("/habits/:id", (request, response) => {
 });
 
 // ---------- DELETE /habits/:id ----------
+// Delete a habit and its related checkins
 app.delete("/habits/:id", (request, response) => {
   const habitId = parseInt(request.params.id);
   const habitIndex = habits.findIndex((habit) => habit.id === habitId);
@@ -132,6 +135,7 @@ app.delete("/habits/:id", (request, response) => {
 });
 
 // ---------- GET /habits/:id/checkins ----------
+// Return all checkins for a specific habit
 app.get("/habits/:id/checkins", (request, response) => {
   const habitId = parseInt(request.params.id);
   const habitIndex = habits.findIndex((habit) => habit.id === habitId);
@@ -152,6 +156,7 @@ app.get("/habits/:id/checkins", (request, response) => {
 });
 
 // ---------- POST /habits/:habitId/checkins ----------
+// Create a new checkin for a specific habit
 app.post("/habits/:habitId/checkins", (request, response) => {
   const habitId = parseInt(request.params.habitId);
   let { completed, date } = request.body;
